@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client-side Virtual Ad Replacement (POC)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <h1>Client-side Virtual Ad Replacement (POC)</h1>
+      </header>
+
+      <section class="stage">
+        <video id="sourceVideo" preload="auto" playsinline></video>
+        <canvas id="renderCanvas" width="960" height="540"></canvas>
+        <div id="overlay" class="overlay hidden">
+          <div class="overlay-content">
+            <p id="overlayMessage"></p>
+            <label class="file-input hidden" id="videoInputLabel">
+              Upload MP4
+              <input id="videoInput" type="file" accept="video/mp4" />
+            </label>
+            <button id="playButton" class="hidden" type="button">Start Playback</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="debug">
+        <div class="debug-row">
+          <strong>Current ad:</strong> <span id="currentAd">ad1</span>
+        </div>
+        <div class="debug-row">
+          <strong>Last switch:</strong> <span id="lastSwitch">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>FPS:</strong> <span id="fps">0</span>
+        </div>
+        <div class="debug-row">
+          <label>
+            <input id="showBox" type="checkbox" checked />
+            Show inventory bounding box
+          </label>
+        </div>
+        <div class="debug-row">
+          <label for="modeSelect"><strong>Switch mode:</strong></label>
+          <select id="modeSelect">
+            <option value="interval">Random interval</option>
+            <option value="frame">Random each frame</option>
+            <option value="manual">Manual</option>
+          </select>
+        </div>
+        <div class="debug-row actions">
+          <button id="forceAd1" type="button">Force Ad 1</button>
+          <button id="forceAd2" type="button">Force Ad 2</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
