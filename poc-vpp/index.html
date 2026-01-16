@@ -12,9 +12,11 @@
         <h1>Client-side Virtual Ad Replacement (POC)</h1>
       </header>
 
-      <section class="stage">
+      <section class="stage" id="stage">
         <video id="sourceVideo" preload="auto" playsinline></video>
-        <canvas id="renderCanvas" width="960" height="540"></canvas>
+        <div id="canvasWrap" class="canvas-wrap">
+          <canvas id="renderCanvas" width="960" height="540"></canvas>
+        </div>
         <div id="overlay" class="overlay hidden">
           <div class="overlay-content">
             <p id="overlayMessage"></p>
@@ -54,6 +56,22 @@
         <div class="debug-row actions">
           <button id="forceAd1" type="button">Force Ad 1</button>
           <button id="forceAd2" type="button">Force Ad 2</button>
+        </div>
+        <div class="debug-row section-title">Quality Debug Panel</div>
+        <div class="debug-row">
+          <strong>Video res:</strong> <span id="videoResolution">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Canvas backing:</strong> <span id="canvasBacking">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>CSS size:</strong> <span id="canvasCss">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>DPR:</strong> <span id="dprValue">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Render loop:</strong> <span id="renderLoop">-</span>
         </div>
       </section>
     </main>
