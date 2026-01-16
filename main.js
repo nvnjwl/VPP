@@ -14,6 +14,7 @@ const undoQuadButton = document.getElementById("undoQuad");
 const clearAllButton = document.getElementById("clearAll");
 const autoDetectButton = document.getElementById("autoDetect");
 const autoStatusLabel = document.getElementById("autoStatus");
+const useCameraButton = document.getElementById("useCamera");
 const quadCountLabel = document.getElementById("quadCount");
 const selectedQuadLabel = document.getElementById("selectedQuad");
 const selectedScoreLabel = document.getElementById("selectedScore");
@@ -50,6 +51,7 @@ let nextSwitchTimeout = null;
 let editMode = false;
 let opencvReady = false;
 let autoDetectTimer = null;
+let cameraStream = null;
 
 const quads = [];
 let activePoints = [];
@@ -85,6 +87,26 @@ function setOverlay(message, showInput, showPlay) {
   videoInputLabel.classList.toggle("hidden", !showInput);
   playButton.classList.toggle("hidden", !showPlay);
   overlay.classList.remove("hidden");
+}
+
+async function enableCamera() {
+  if (cameraStream) {
+    cameraStream.getTracks().forEach((track) => track.stop());
+  }
+  try {
+    cameraStream = await navigator.mediaDevices.getUserMedia({
+      video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false,
+    });
+    video.src = "";
+    video.srcObject = cameraStream;
+    renderReady = false;
+    video.play().catch(() => {});
+    hideOverlay();
+    setAutoStatus("Camera stream active");
+  } catch (error) {
+    setOverlay("Camera access failed. Check permissions.", false, true);
+  }
 }
 
 function hideOverlay() {
@@ -828,6 +850,7 @@ function initControls() {
   undoQuadButton.addEventListener("click", undoLastQuad);
   clearAllButton.addEventListener("click", clearAllQuads);
   autoDetectButton.addEventListener("click", autoDetectQuad);
+  useCameraButton.addEventListener("click", enableCamera);
   canvas.addEventListener("click", handleCanvasClick);
 }
 
