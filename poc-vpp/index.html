@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client-side Virtual Ad Replacement (POC)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <h1>Client-side Virtual Ad Replacement (POC)</h1>
+      </header>
+
+      <section class="stage" id="stage">
+        <video id="sourceVideo" preload="auto" playsinline></video>
+        <div id="canvasWrap" class="canvas-wrap">
+          <canvas id="renderCanvas" width="960" height="540"></canvas>
+        </div>
+        <div id="overlay" class="overlay hidden">
+          <div class="overlay-content">
+            <p id="overlayMessage"></p>
+            <label class="file-input hidden" id="videoInputLabel">
+              Upload MP4
+              <input id="videoInput" type="file" accept="video/mp4" />
+            </label>
+            <button id="playButton" class="hidden" type="button">Start Playback</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="debug">
+        <div class="debug-row actions">
+          <button id="toggleEdit" type="button">Enable Edit Mode</button>
+          <button id="clearCurrent" type="button">Clear Current</button>
+          <button id="undoQuad" type="button">Undo Last Quad</button>
+          <button id="clearAll" type="button">Clear All Quads</button>
+        </div>
+        <div class="debug-row">
+          <strong>Quads stored:</strong> <span id="quadCount">0</span>
+        </div>
+        <div class="debug-row">
+          <strong>Selected quad:</strong> <span id="selectedQuad">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Selected score:</strong> <span id="selectedScore">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Per-quad scores:</strong> <span id="quadScores">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Points:</strong> <span id="pointCoords">-</span>
+        </div>
+        <div class="debug-row">
+          <label>
+            <input id="showBox" type="checkbox" checked />
+            Show quad overlays
+          </label>
+        </div>
+        <div class="debug-row section-title">Quality Debug Panel</div>
+        <div class="debug-row">
+          <strong>Video res:</strong> <span id="videoResolution">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Canvas backing:</strong> <span id="canvasBacking">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>CSS size:</strong> <span id="canvasCss">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>DPR:</strong> <span id="dprValue">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>Render loop:</strong> <span id="renderLoop">-</span>
+        </div>
+        <div class="debug-row">
+          <strong>FPS:</strong> <span id="fps">0</span>
+        </div>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
