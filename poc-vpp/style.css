@@ -1,0 +1,153 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background: #0f1115;
+  color: #e6e9ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a1d24 0%, #0f1115 55%, #0b0d12 100%);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.stage {
+  position: relative;
+  background: #0b0d12;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.canvas-wrap {
+  width: 100%;
+}
+
+#renderCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: #080a0f;
+}
+
+#sourceVideo {
+  display: none;
+}
+
+.debug {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(22, 26, 34, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 520px;
+}
+
+.debug-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.debug-row.actions {
+  gap: 8px;
+}
+
+.debug-row.section-title {
+  margin-top: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+button,
+select,
+label.file-input {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #1a1f2b;
+  color: inherit;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover,
+select:hover,
+label.file-input:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+label.file-input input {
+  display: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 16px;
+  border-radius: 12px;
+  background: rgba(10, 12, 17, 0.9);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.overlay-content {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  padding: 24px;
+  border-radius: 12px;
+  background: rgba(20, 24, 33, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.overlay p {
+  margin: 0;
+  max-width: 360px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 24px 16px 40px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  .debug {
+    max-width: none;
+  }
+}
